@@ -1,0 +1,6 @@
+/Users/wcap/thinkocapo/AspNetCoreMVC/obj/Debug/netcoreapp2.2/AspNetCoreMVC.csprojAssemblyReference.cache
+/Users/wcap/thinkocapo/AspNetCoreMVC/obj/Debug/netcoreapp2.2/AspNetCoreMVC.csproj.CoreCompileInputs.cache
+/Users/wcap/thinkocapo/AspNetCoreMVC/obj/Debug/netcoreapp2.2/AspNetCoreMVC.RazorAssemblyInfo.cache
+/Users/wcap/thinkocapo/AspNetCoreMVC/obj/Debug/netcoreapp2.2/AspNetCoreMVC.RazorAssemblyInfo.cs
+/Users/wcap/thinkocapo/AspNetCoreMVC/obj/Debug/netcoreapp2.2/AspNetCoreMVC.AssemblyInfoInputs.cache
+/Users/wcap/thinkocapo/AspNetCoreMVC/obj/Debug/netcoreapp2.2/AspNetCoreMVC.AssemblyInfo.cs
