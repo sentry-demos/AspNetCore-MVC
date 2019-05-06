@@ -53,7 +53,7 @@ namespace AspNetCoreMVC.Controllers
 
         private void checkout(List<Item> cart)
         {
-            _logger.LogInformation("\n*********** BEFORE " + Store.inventory);
+            _logger.LogInformation("*********** BEFORE " + Store.inventory);
             Dictionary<string, int> tempInventory = Store.inventory;
             foreach (Item item in cart)
             {
