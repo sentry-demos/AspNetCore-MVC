@@ -1,5 +1,5 @@
 $sentry_org="testorg-az"
-$sentry_project="dotnet-demo"
+$sentry_project="ndmanvar-aspnetcoremvc"
 $version=sentry-cli releases propose-version
 
 #Create Release
@@ -11,5 +11,5 @@ sentry-cli releases -o $sentry_org -p $sentry_project set-commits --auto $versio
 #Set new value for release version environment variable
 $Env:SENTRY_RELEASE=$version
 
-#Launch app 
+#Launch app
 dotnet run
