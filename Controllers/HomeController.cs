@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Http.Internal;
 using AspNetCoreMVC.Controllers;
 using Sentry.AspNetCore;
 
-
 public class Order
 {
     public string email { get; set; }
@@ -27,10 +26,6 @@ public class Item
     public string image { get; set; }
 }
 
-// public class User
-// {
-//     public string Email { get; set; }
-// }
 public static class Store
 {
     public static Dictionary<string, int> inventory
@@ -49,12 +44,10 @@ namespace AspNetCoreMVC.Controllers
     [ApiController]
     public class HomeController : ControllerBase
     {
-        // private readonly IGameService _gameService;
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
-            // _gameService = gameService;
             _logger = logger;
         }
 
@@ -80,8 +73,31 @@ namespace AspNetCoreMVC.Controllers
         [HttpPost("checkout")]
         public ActionResult<IEnumerable<string>> checkout([FromBody] Order order)
         {
+            String email = order.email.ToString();
+            String transaction_id = Request.Headers["X-transaction-ID"];
+            String session_id = Request.Headers["X-session-ID"];
+            SentrySdk.ConfigureScope(scope =>
+            {
+                scope.User = new Sentry.Protocol.User
+                {
+                    Email = email
+                };
+            });
+            SentrySdk.ConfigureScope(scope =>
+            {
+                scope.SetTag("transaction_id", transaction_id);
+            });
+            SentrySdk.ConfigureScope(scope =>
+            {
+                scope.SetTag("session_id", session_id);
+            });
+            SentrySdk.ConfigureScope(scope =>
+            {
+                scope.SetExtra("inventory", Store.inventory);
+            });
+
             checkout(order.cart);
-            return new string[] { "SUCCESS: order happened properly" };
+            return new string[] { "SUCCESS: order has been placed" };
         }
 
 
