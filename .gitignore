@@ -1,1 +1,3 @@
 **/*.cacheauto
+obj
+bin
