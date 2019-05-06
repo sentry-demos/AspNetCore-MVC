@@ -12220,23 +12220,23 @@
     ]
   },
   "packageFolders": {
-    "/Users/wcap/.nuget/packages/": {},
+    "/Users/neilmanvar/.nuget/packages/": {},
     "/usr/local/share/dotnet/sdk/NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/wcap/thinkocapo/AspNetCoreMVC/AspNetCoreMVC.csproj",
+      "projectUniqueName": "/Users/neilmanvar/git/ndmanvar/AspNetCore-MVC/AspNetCoreMVC.csproj",
       "projectName": "AspNetCoreMVC",
-      "projectPath": "/Users/wcap/thinkocapo/AspNetCoreMVC/AspNetCoreMVC.csproj",
-      "packagesPath": "/Users/wcap/.nuget/packages/",
-      "outputPath": "/Users/wcap/thinkocapo/AspNetCoreMVC/obj/",
+      "projectPath": "/Users/neilmanvar/git/ndmanvar/AspNetCore-MVC/AspNetCoreMVC.csproj",
+      "packagesPath": "/Users/neilmanvar/.nuget/packages/",
+      "outputPath": "/Users/neilmanvar/git/ndmanvar/AspNetCore-MVC/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/wcap/.nuget/NuGet/NuGet.Config"
+        "/Users/neilmanvar/.nuget/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.2"
