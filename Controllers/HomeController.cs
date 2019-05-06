@@ -40,7 +40,7 @@ public static class Store
 namespace AspNetCoreMVC.Controllers
 {
 
-    [Route("home/[controller]")]
+    [Route("")]
     [ApiController]
     public class HomeController : ControllerBase
     {
