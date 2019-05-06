@@ -12226,11 +12226,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/neilmanvar/git/ndmanvar/AspNetCore-MVC/AspNetCoreMVC.csproj",
+      "projectUniqueName": "/Users/neilmanvar/git/sentry-demos/AspNetCore-MVC/AspNetCoreMVC.csproj",
       "projectName": "AspNetCoreMVC",
-      "projectPath": "/Users/neilmanvar/git/ndmanvar/AspNetCore-MVC/AspNetCoreMVC.csproj",
+      "projectPath": "/Users/neilmanvar/git/sentry-demos/AspNetCore-MVC/AspNetCoreMVC.csproj",
       "packagesPath": "/Users/neilmanvar/.nuget/packages/",
-      "outputPath": "/Users/neilmanvar/git/ndmanvar/AspNetCore-MVC/obj/",
+      "outputPath": "/Users/neilmanvar/git/sentry-demos/AspNetCore-MVC/obj/",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

@@ -8,22 +8,8 @@ To show how Sentry works in the ASP.NET Core SDK.
 # Initial Setup & Run
 1. Configure your DSN in [appsettings.json](appsettings.json)
 2. Configure your org slug and project slug in [deploy.ps1](deploy.ps1)
-3. `pwsh deploy.ps1`
-4. `http://localhost:62920/Home/handled` to send an Event to Sentry
-or
-5. Postman `localhost:62920/Home/checkout`
-```
-{
-	"cart": [
-		{
-			"id": "wrench"
-		}
-	],'
-	"email": "mikejo@msn.com"
-}
-// X-transaction-ID: 11223
-// X-session-ID: 22334
-```
+3. ```SENTRY_RELEASE=`sentry-cli releases propose-version` pwsh deploy.ps1```
+4. `http://localhost:62920/Home/handled` to trigger error and send event to Sentry
 
 # GIF
-hereautoautoauto
+here
