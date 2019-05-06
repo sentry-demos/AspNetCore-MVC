@@ -12,54 +12,25 @@ using Microsoft.AspNetCore.Http.Internal;
 using AspNetCoreMVC.Controllers;
 using Sentry.AspNetCore;
 
-public class Order
-{
-    public string email { get; set; }
-    public List<Item> cart { get; set; }
-}
-
-public class Item
-{
-    public string id { get; set; }
-    public string name { get; set; }
-    public int price { get; set; }
-    public string image { get; set; }
-}
-
-public static class Store
-{
-    public static Dictionary<string, int> inventory
-        = new Dictionary<string, int>
-    {
-        { "wrench", 1 },
-        { "nails", 1 },
-        { "hammer", 1 }
-    };
-}
-
 namespace AspNetCoreMVC.Controllers
 {
 
-    [Route("")]
-    [ApiController]
+    [Route("/")]
     public class HomeController : ControllerBase
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        public HomeController(ILogger<HomeController> logger) => _logger = logger;
 
-        private void checkout(List<Item> cart)
+        private void Checkout(List<Item> cart)
         {
-            _logger.LogInformation("*********** BEFORE " + Store.inventory);
-            Dictionary<string, int> tempInventory = Store.inventory;
-            foreach (Item item in cart)
+            _logger.LogInformation("*********** BEFORE {inventory}", Store.inventory);
+            var tempInventory = Store.inventory;
+            foreach (var item in cart)
             {
                 if (Store.inventory[item.id.ToString()] <= 0)
                 {
-                    throw new Exception("Not enough inventory for " + item.id.ToString());
+                    throw new Exception("Not enough inventory for " + item.id);
                 }
                 else
                 {
@@ -67,42 +38,32 @@ namespace AspNetCoreMVC.Controllers
                 }
             }
             Store.inventory = tempInventory;
-            _logger.LogInformation("\n*********** AFTER " + Store.inventory);
+            _logger.LogInformation("*********** AFTER {inventory}", Store.inventory);
         }
 
         [HttpPost("checkout")]
-        public ActionResult<IEnumerable<string>> checkout([FromBody] Order order)
+        public string Checkout([FromBody] Order order)
         {
-            String email = order.email.ToString();
-            String transaction_id = Request.Headers["X-transaction-ID"];
-            String session_id = Request.Headers["X-session-ID"];
+            var email = order.email.ToString();
+            var transactionId = Request.Headers["X-transaction-ID"];
+            var sessionId = Request.Headers["X-session-ID"];
             SentrySdk.ConfigureScope(scope =>
             {
                 scope.User = new Sentry.Protocol.User
                 {
                     Email = email
                 };
-            });
-            SentrySdk.ConfigureScope(scope =>
-            {
-                scope.SetTag("transaction_id", transaction_id);
-            });
-            SentrySdk.ConfigureScope(scope =>
-            {
-                scope.SetTag("session_id", session_id);
-            });
-            SentrySdk.ConfigureScope(scope =>
-            {
+                scope.SetTag("transaction_id", transactionId);
+                scope.SetTag("session_id", sessionId);
                 scope.SetExtra("inventory", Store.inventory);
             });
 
-            checkout(order.cart);
-            return new string[] { "SUCCESS: order has been placed" };
+            Checkout(order.cart);
+            return "SUCCESS: order has been placed";
         }
 
-
         [HttpGet("handled")]
-        public ActionResult<IEnumerable<string>> handled()
+        public string Handled()
         {
             try
             {
@@ -116,20 +77,45 @@ namespace AspNetCoreMVC.Controllers
                         Reason = "There's a 'throw null' hard-coded in the try block"
                     });
 
-                var id = SentrySdk.CaptureException(exception);
+                _logger.LogError(exception, "handled error");
             }
-            return new string[] { "SUCCESS: back-end error handled gracefully" };
+            return "SUCCESS: back-end error handled gracefully";
         }
 
 
         [HttpGet("unhandled")]
-        public ActionResult<IEnumerable<string>> unhandled()
+        public string Unhandled()
         {
             int n1 = 1;
             int n2 = 0;
             int ans = n1 / n2;
-            return new string[] { "FAILURE: Server-side Error" };
+            return "FAILURE: Server-side Error";
         }
-
     }
+
+    public class Order
+    {
+        public string email { get; set; }
+        public List<Item> cart { get; set; }
+    }
+
+    public class Item
+    {
+        public string id { get; set; }
+        public string name { get; set; }
+        public int price { get; set; }
+        public string image { get; set; }
+    }
+
+    public static class Store
+    {
+        public static Dictionary<string, int> inventory
+            = new Dictionary<string, int>
+        {
+        { "wrench", 1 },
+        { "nails", 1 },
+        { "hammer", 1 }
+        };
+    }
+
 }
