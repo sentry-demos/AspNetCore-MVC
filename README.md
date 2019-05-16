@@ -9,7 +9,7 @@ To show how Sentry works in the ASP.NET Core SDK.
 1. Configure your DSN in [appsettings.json](appsettings.json)
 2. Configure your org slug and project slug in [deploy.ps1](deploy.ps1)
 3. ```SENTRY_RELEASE=`sentry-cli releases propose-version` pwsh deploy.ps1```
-4. `http://localhost:62920/handled` to trigger error and send event to Sentry
+4. `http://localhost:5001/handled` to trigger error and send event to Sentry
 
 # GIF
-here
+![Alt Text](demo.gif)
