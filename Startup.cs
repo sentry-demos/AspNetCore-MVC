@@ -36,7 +36,7 @@ namespace AspNetCoreMVC
             });
 
             // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddControllers();
+            services.addControllers();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
