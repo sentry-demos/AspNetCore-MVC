@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using Sentry;
-using Microsoft.AspNetCore.Http.Internal;
+using Microsoft.AspNetCore.Http;
 using AspNetCoreMVC.Controllers;
 using Sentry.AspNetCore;
 

@@ -35,7 +35,8 @@ namespace AspNetCoreMVC
                 });
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllers();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -48,11 +49,13 @@ namespace AspNetCoreMVC
             {
                 app.UseHsts();
             }
-
+            
             app.UseCors();
-
+            app.UseRouting();
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllers();
+            });
         }
     }
 }
