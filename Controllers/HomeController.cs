@@ -70,7 +70,8 @@ namespace AspNetCoreMVC.Controllers
                 //testing corrlelation
                 throw null;
             }
-            catch (Exception exception)
+            catch (Exception exception)?
+            //add a custom tag, add breadcrumb
             {
                 exception.Data.Add("detail",
                     new
