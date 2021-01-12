@@ -65,12 +65,17 @@ namespace AspNetCoreMVC.Controllers
         [HttpGet("handled")]
         public string Handled()
         {
+            
             try
             {
+                Sentry.ConfigureScope(scope => {
+                scope.SetTag("CustomerType","Enterprise");
+                });
+                _logger.LogInformation("My breadcrumb", "Setting custom breadcrumb");
                 //testing corrlelation
                 throw null;
             }
-            catch (Exception exception)?
+            catch (Exception exception)
             //add a custom tag, add breadcrumb
             {
                 exception.Data.Add("detail",
