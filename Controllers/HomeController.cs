@@ -72,7 +72,7 @@ namespace AspNetCoreMVC.Controllers
                 scope.SetTag("CustomerType","Enterprise");
                 });
                 _logger.LogInformation("My custom breadcrumb");
-                //implementing fix
+                //implement another fix
                 throw null;
             }
             catch (Exception exception)
