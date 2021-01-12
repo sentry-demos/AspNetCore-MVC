@@ -68,7 +68,7 @@ namespace AspNetCoreMVC.Controllers
             
             try
             {
-                SentrySdk.Scope(scope => {
+                SentrySdk.ConfigureScope(scope => {
                 scope.SetTag("CustomerType","Enterprise");
                 });
                 _logger.LogInformation("My breadcrumb", "Setting custom breadcrumb");
