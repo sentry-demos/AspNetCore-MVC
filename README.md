@@ -43,3 +43,13 @@ To show how Sentry works in the ASP.NET Core SDK.
 
 # GIF
 ![Alt Text](demo.gif)
+
+## Gotchas 
+
+#### Question: Where is ```Sentry.init()```?
+\
+This demo leverages ASP.NET Core's configuration system. Because of this much of your Sentry config info (dsn etc.) is going to be located in ```appsettings.json```. This allows us to call the ```UseSentry()``` extension method on our webbuilder in ```Program.cs``` without any arguments.
+
+#### Question: How am I setting breadcrumbs without ```SentrySdk.AddBreadcrumb()```?
+\
+This demo utilizes Sentry's integration with ```Microsoft.Extensions.Logging``` to both set  breadcrumbs and send errors. Your ```appsettings.json``` file configures the minimum log levels that correspond to either a crumb or an event. More information here: https://docs.sentry.io/platforms/dotnet/guides/aspnetcore/#configure
