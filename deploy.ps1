@@ -1,5 +1,5 @@
 $sentry_org="testorg-az"
-$sentry_project="ndmanvar-aspnetcoremvc"
+$sentry_project="aspnet-core-rw"
 $version=sentry-cli releases propose-version
 
 #Create Release

@@ -8,7 +8,7 @@ using Microsoft.Extensions.Logging;
 using System.IO;
 using Newtonsoft.Json.Linq;
 using Sentry;
-using Microsoft.AspNetCore.Http.Internal;
+using Microsoft.AspNetCore.Http;
 using AspNetCoreMVC.Controllers;
 using Sentry.AspNetCore;
 
@@ -65,11 +65,18 @@ namespace AspNetCoreMVC.Controllers
         [HttpGet("handled")]
         public string Handled()
         {
+            
             try
             {
+                SentrySdk.ConfigureScope(scope => {
+                scope.SetTag("CustomerType","Enterprise");
+                });
+                _logger.LogInformation("My custom breadcrumb");
+                //implement another fix
                 throw null;
             }
             catch (Exception exception)
+            //add a custom tag, add breadcrumb
             {
                 exception.Data.Add("detail",
                     new
