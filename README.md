@@ -1,3 +1,12 @@
+# Obsolete
+
+This demo is obsolete. 
+The latest demo is now located at:
+
+https://github.com/sentry-demos/empower/tree/master/aspnetcore
+
+--------
+
 # Summary
 To show how Sentry works in the ASP.NET Core SDK.
 - how to integrate the SDK into ASP.NET CORE (https://docs.sentry.io/platforms/dotnet/aspnetcore/)
